@@ -5,6 +5,7 @@ Sort each half S1 and S2 recusively.
 Merge two halves S1 and S2 into S
 """
 from operator import lt, gt
+from math import ceil, log2
 
 def merge(S1, S2, S, desc):
     """Merge two sequences S1 and S2 into S in ascending order.
@@ -47,12 +48,52 @@ def merge_sort(S, desc=False):
     
     # Merge
     merge(S1, S2, S, desc=desc)
-            
+
+
+def merge_iter(src, dest, start, inc):
+    x = start
+    y = start + inc
+    z = start
+    
+    end_1 = start + inc
+    end_2 = min(start + 2*inc, len(src))
+    
+    while x < end_1 and y < end_2:
+        if src[x] < src[y]:
+            dest[z] = src[x]
+            x += 1
+        else:
+            dest[z] = src[y]
+            y += 1
+        z += 1
+    if x < end_1:
+        dest[z:end_2] = src[x:end_1]
+    elif y < end_2:
+        dest[z:end_2] = src[y:end_2]
+
+    
+def merge_sort_iter(S, desc=False):
+    n = len(S)
+    if n < 2: 
+        return
+    logn = ceil(log2(n))
+    src, dest = S, [None] * n
+    for i in (2**k for k in range(logn)):
+        for j in range(0, n, 2*i):
+            merge_iter(src, dest, j, i)
+        src, dest = dest, src
+        
+    if S is not src:
+        S[0:n] = src[0:n]
+    
     
 if __name__ == "__main__":
     S = [4,5,3,2,1]
-    merge_sort(S)
-    print(S)
-    merge_sort(S, desc=True)
+    # merge_sort(S)
+    # print(S)
+    # merge_sort(S, desc=True)
+    # print(S)
+    
+    merge_sort_iter(S)
     print(S)
     
