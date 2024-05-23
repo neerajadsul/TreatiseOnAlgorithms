@@ -1,5 +1,5 @@
 import random
-import numpy as np
+# import numpy as np
 from typing import Collection, Tuple
 
 
@@ -20,22 +20,29 @@ def display_grid(grid, start=(0,0), goal=(4,4), route=[], stdout=None):
 
 def maze_generator(x=10, y=10, threshold=0.7):
     """Generates a 2D Maze for route finding algorithms.
-
+    
     Args:
         x (int): horizontal tiles
         y (int): vertical tiles
     """
-    grid = np.random.rand(x, y)
-    grid[grid > threshold] = 1
-    grid[grid <= threshold] = 0
-    grid[:, -1] = 1
+    grid = [[int(random.random() > threshold) for _ in range(x)] for _ in range(y)]
+    # grid[grid > threshold] = 1
+    # grid[grid <= threshold] = 0
+    # grid[:, -1] = 1
     return grid
 
 def save_maze_cs50format(grid, filepath):
+    """ Save maze to text file with # and space to represent blocked and
+        free space in the grid.
+        Always sets the last column for each row to 1 to avoid 
+        trailing spaces blanking error.
+    """
     NROW, NCOL = len(grid), len(grid[0])
     for nrow, row in enumerate(grid):
         if len(row) != NCOL:
             raise ValueError(f'Non uniform grid, first row len: {NROW}, got row {len(row)} len {len(row)}')
+        # Set last column to 1 to avoid trailing spaces error in text editors
+        row[-1] == 1
 
     s = '\n'.join(''.join(map(lambda x: '#' if x == 1 else ' ', row)) for row in grid)
     with open(filepath, 'wt') as fp:
