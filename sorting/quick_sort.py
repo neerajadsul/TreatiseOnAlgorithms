@@ -40,7 +40,7 @@ def quick_sort_lists(S):
 
 def quick_sort_deque(S: Deque):
     if not isinstance(S, Deque):
-        raise ValueError('Expected sequence of Deque type')
+        S = deque(S)
     n = len(S)
     if n < 2:
         return
