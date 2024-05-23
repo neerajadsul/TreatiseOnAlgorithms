@@ -1,4 +1,7 @@
 # Experiments based Treatise on Algorithms and Data Structures
+
+![CI Checks](https://github.com/github/TreatiseOnAlgorithms/actions/workflows/python-app.yml/badge.svg)
+
 Experimenting with algorithms is fun and allows deep understanding the
 impact of design choices in practical environment.
 
