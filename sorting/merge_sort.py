@@ -7,7 +7,8 @@ Merge two halves S1 and S2 into S
 from operator import lt, gt
 from math import ceil, log2
 
-def merge(S1, S2, S, desc):
+
+def _merge(S1, S2, S, desc):
     """Merge two sequences S1 and S2 into S in ascending order.
     
     Args:
@@ -47,10 +48,10 @@ def merge_sort(S, desc=False):
     merge_sort(S2, desc=desc)
     
     # Merge
-    merge(S1, S2, S, desc=desc)
+    _merge(S1, S2, S, desc=desc)
 
 
-def merge_iter(src, dest, start, inc):
+def _merge_iter(src, dest, start, inc):
     x = start
     y = start + inc
     z = start
@@ -80,7 +81,7 @@ def merge_sort_iter(S, desc=False):
     src, dest = S, [None] * n
     for i in (2**k for k in range(logn)):
         for j in range(0, n, 2*i):
-            merge_iter(src, dest, j, i)
+            _merge_iter(src, dest, j, i)
         src, dest = dest, src
         
     if S is not src:
