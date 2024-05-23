@@ -23,16 +23,19 @@ def bench_sorting(datapoint_func: Callable, sorting_func: Callable, size_range=(
 
 
 @timeit_wrapper
-def sequential(datapoint_func, sorting_func):
-    bench_sorting(datapoint_func, sorting_func, size_range=(14, 20))
+def sequential(dp_funcs, sort_funcs):
+    for dp_func, sort_func in product(dp_funcs, sort_funcs):
+        bench_sorting(dp_func, sort_func, size_range=(14, 19))
+        print()
+
+
+@timeit_wrapper
+def multiproc_pools():
+    pass
 
 
 if __name__ == "__main__":
     dp_funcs = [random.random, RwdEffectivePowerWins]
-    sort_funcs = [merge_sort.merge_sort, merge_sort.merge_sort_iter, quick_sort.quick_sort_lists] #, quick_sort.quick_sort_deque]
-    for dp_func, sort_func in product(dp_funcs, sort_funcs):
-        sequential(dp_func, sort_func)
-        print()
-    
-    
+    sort_funcs = [merge_sort.merge_sort, merge_sort.merge_sort_iter, quick_sort.quick_sort_lists, quick_sort.quick_sort_deque]
+    sequential(dp_funcs=dp_funcs, sort_funcs=sort_funcs)
     
