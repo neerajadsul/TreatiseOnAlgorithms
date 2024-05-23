@@ -34,4 +34,11 @@ class RealWorldData:
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}, {self.power}, {self.effect}'
- 
+
+
+class RwdEffectivePowerWins(RealWorldData):
+    def __init__(self):
+        self.first_name = first_name()
+        self.last_name = last_name()
+        self.effect = effect()
+        self.power = power()
