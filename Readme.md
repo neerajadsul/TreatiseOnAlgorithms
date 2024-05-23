@@ -35,5 +35,12 @@ and Rust <img src="./_docs/figures/Rust_programming_language_black_logo.svg" hei
     ```
 Note: Benchmark times are on MacBook Pro 16 with M1 Pro.
 
+2. Quick-sort
+   - Recursive
+   ```
+    %timeit quick_sort([random.random() for _ in range(100_000)])
+    1.69 s ± 408 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+ 
+
 ## Adversarial Search
 1. Minimax Algorithm
