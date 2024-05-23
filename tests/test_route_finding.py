@@ -43,8 +43,7 @@ def test_route_finding_breadth_first(maze_goal):
 def test_route_finding_greedy_first(maze_goal):
     maze, start, goal = maze_goal
     algo = 'gfs'
-    route, visited = find_route(maze, start, goal,
-                                algorithm=algo, heuristics=greedy_first_heuristics)
+    route, visited = find_route(maze, start, goal, algorithm=algo)
     assert route is not None
     # with open(f'{algo}_result.txt', 'w') as fp:
         # display_grid(maze, start, goal=goal, route=route, stdout=fp)
