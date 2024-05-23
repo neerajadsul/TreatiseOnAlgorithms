@@ -7,7 +7,6 @@ def timeit_wrapper(func, print_stdout=False):
     Args:
         func: _description_
     """
-    print('Inside the timeit, above wrapper')
     def wrapper(*args, **kwargs):
         begin = time.time_ns()
         result = func(*args, **kwargs)
@@ -16,7 +15,6 @@ def timeit_wrapper(func, print_stdout=False):
         if print_stdout:
             print(f'{func.__name__} Total Time: {total_time:.1f}')
         return result, total_time
-    print('Returning wrapper')
     return wrapper
 
 
@@ -31,4 +29,3 @@ if __name__ == "__main__":
     print(result)
     result = timeit_wrapper(testing,False)(0.3)
     print(result)
-    # testing(.4)
