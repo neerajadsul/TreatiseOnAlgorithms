@@ -1,3 +1,6 @@
+import pytest
+
+
 def test_load_maze():
     """Tests loading a 2-D maze from a text file."""
     pass
